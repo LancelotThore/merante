@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 @export var sound_loop: AudioStream
+@export var dangerous: bool = true
 @onready var audio := $AudioStreamPlayer2D
 
 func _ready() -> void:
@@ -9,5 +10,5 @@ func _ready() -> void:
 		audio.play()
 
 func _on_danger_zone_body_entered(body: Node) -> void:
-	if body.is_in_group("ida"):
+	if dangerous and body.is_in_group("ida"):
 		GameState.force_surface()

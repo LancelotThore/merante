@@ -84,6 +84,4 @@ fragment_id = "frag_01"
 
 [node name="Ida" parent="." unique_id=1411312294 instance=ExtResource("1_ida")]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=240307509]
-
 [node name="HUD" parent="." unique_id=1410670151 instance=ExtResource("2_hud")]
