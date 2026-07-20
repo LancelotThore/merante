@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 GameState="*res://autoloads/game_state.gd"
 MiniMap="*res://autoloads/mini_map.tscn"
 Narrative="*res://autoloads/narrative.gd"
+Carnet="*res://autoloads/carnet.tscn"
 
 [display]
 

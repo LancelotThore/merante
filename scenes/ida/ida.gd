@@ -63,10 +63,8 @@ func toggle_lamp_mode() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("lamp_toggle"):
 		toggle_lamp_mode()
-	if event.is_action_pressed("open_notebook"):
-		if ResourceLoader.exists("res://scenes/ui/carnet.tscn"):
-			get_tree().change_scene_to_file("res://scenes/ui/carnet.tscn")
 	# tool_use sera branché sur ToolSystem une fois l'autoload créé (outils)
+	# open_notebook est géré directement par l'autoload Carnet (fonctionne même en pause)
 
 	# DEBUG : réarme la plongée manuellement, en attendant la vraie remontée à la surface
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_R:
