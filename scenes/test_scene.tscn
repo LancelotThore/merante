@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://c0ida0000000" path="res://scenes/ida/ida.tscn" id="1_ida"]
 [ext_resource type="PackedScene" uid="uid://dhud0000001" path="res://scenes/ui/hud.tscn" id="2_hud"]
+[ext_resource type="PackedScene" uid="uid://csedentaire0001" path="res://scenes/creatures/sedentaire.tscn" id="3_sedentaire"]
+[ext_resource type="PackedScene" uid="uid://cfragment0001" path="res://scenes/fragment.tscn" id="4_fragment"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_horizontal"]
 size = Vector2(400, 20)
@@ -72,6 +74,13 @@ color = Color(0.3, 0.28, 0.22, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight" unique_id=91862023]
 shape = SubResource("RectangleShape2D_vertical")
+
+[node name="Sedentaire" parent="." instance=ExtResource("3_sedentaire")]
+position = Vector2(100, 60)
+
+[node name="Fragment" parent="." instance=ExtResource("4_fragment")]
+position = Vector2(-100, -60)
+fragment_id = "frag_01"
 
 [node name="Ida" parent="." unique_id=1411312294 instance=ExtResource("1_ida")]
 
