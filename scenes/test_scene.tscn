@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://cdtos253ykrc7"]
+
+[ext_resource type="PackedScene" uid="uid://c0ida0000000" path="res://scenes/ida/ida.tscn" id="1_ida"]
+[ext_resource type="PackedScene" uid="uid://dhud0000001" path="res://scenes/ui/hud.tscn" id="2_hud"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_horizontal"]
+size = Vector2(400, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vertical"]
+size = Vector2(20, 300)
+
+[node name="TestScene" type="Node2D" unique_id=1344585959]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=174069752]
+color = Color(0.0392157, 0.0313726, 0.0941176, 1)
+
+[node name="Background" type="ColorRect" parent="." unique_id=538293840]
+offset_left = -190.0
+offset_top = -140.0
+offset_right = 190.0
+offset_bottom = 140.0
+color = Color(0.039215688, 0.03137255, 0.09411765, 1)
+
+[node name="WallTop" type="StaticBody2D" parent="." unique_id=91842724]
+position = Vector2(0, -150)
+
+[node name="ColorRect" type="ColorRect" parent="WallTop" unique_id=1957844448]
+offset_left = -200.0
+offset_top = -10.0
+offset_right = 200.0
+offset_bottom = 10.0
+color = Color(0.3, 0.28, 0.22, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallTop" unique_id=1779353875]
+shape = SubResource("RectangleShape2D_horizontal")
+
+[node name="WallBottom" type="StaticBody2D" parent="." unique_id=1398050074]
+position = Vector2(0, 150)
+
+[node name="ColorRect" type="ColorRect" parent="WallBottom" unique_id=1271717222]
+offset_left = -200.0
+offset_top = -10.0
+offset_right = 200.0
+offset_bottom = 10.0
+color = Color(0.3, 0.28, 0.22, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallBottom" unique_id=1974501898]
+shape = SubResource("RectangleShape2D_horizontal")
+
+[node name="WallLeft" type="StaticBody2D" parent="." unique_id=716019500]
+position = Vector2(-200, 0)
+
+[node name="ColorRect" type="ColorRect" parent="WallLeft" unique_id=477717027]
+offset_left = -10.0
+offset_top = -150.0
+offset_right = 10.0
+offset_bottom = 150.0
+color = Color(0.3, 0.28, 0.22, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft" unique_id=670584792]
+shape = SubResource("RectangleShape2D_vertical")
+
+[node name="WallRight" type="StaticBody2D" parent="." unique_id=59832537]
+position = Vector2(200, 0)
+
+[node name="ColorRect" type="ColorRect" parent="WallRight" unique_id=766947479]
+offset_left = -10.0
+offset_top = -150.0
+offset_right = 10.0
+offset_bottom = 150.0
+color = Color(0.3, 0.28, 0.22, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight" unique_id=91862023]
+shape = SubResource("RectangleShape2D_vertical")
+
+[node name="Ida" parent="." unique_id=1411312294 instance=ExtResource("1_ida")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=240307509]
+
+[node name="HUD" parent="." unique_id=1410670151 instance=ExtResource("2_hud")]

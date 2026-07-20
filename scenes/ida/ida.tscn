@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://c0ida0000000"]
+
+[ext_resource type="Script" path="res://scenes/ida/ida.gd" id="1_ida"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_body"]
+radius = 8.0
+height = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_interact"]
+size = Vector2(48, 48)
+
+[sub_resource type="Gradient" id="Gradient_lamp_halo"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lamp_halo"]
+gradient = SubResource("Gradient_lamp_halo")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="Ida" type="CharacterBody2D" groups=["ida"]]
+script = ExtResource("1_ida")
+
+[node name="Sprite" type="ColorRect" parent="."]
+offset_left = -8.0
+offset_top = -16.0
+offset_right = 8.0
+offset_bottom = 16.0
+color = Color(0.957, 0.627, 0.125, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_body")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_lamp_halo")
+energy = 1.2
+color = Color(0.957, 0.627, 0.125, 1)
+texture_scale = 3.0
+blend_mode = 0
+
+[node name="RayCastUp" type="RayCast2D" parent="."]
+target_position = Vector2(0, -20)
+
+[node name="RayCastDown" type="RayCast2D" parent="."]
+target_position = Vector2(0, 20)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-20, 0)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+target_position = Vector2(20, 0)
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_interact")
