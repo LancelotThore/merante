@@ -3,11 +3,13 @@ extends CharacterBody2D
 const SPEED := 160.0
 const SPEED_STEALTH := 80.0   # mode lampe faible
 const DRAG := 0.82            # friction de l'eau
+const CELL_REVEAL_FACTOR := 1.5   # rayon de révélation (en tuiles) par unité de texture_scale de la lampe
 
 @onready var lamp := $PointLight2D
 @onready var sprite := $Sprite
 
 var lamp_mode := "normal"     # "normal" | "stealth" | "blue"
+var last_cell := Vector2i(999999, 999999)
 
 func _ready() -> void:
 	GameState.player_ref = self
@@ -26,6 +28,26 @@ func _physics_process(_delta: float) -> void:
 		velocity *= DRAG
 
 	move_and_slide()
+
+	var current_cell := Vector2i(global_position / 16.0)
+	if current_cell != last_cell:
+		last_cell = current_cell
+		_reveal_cells_around(current_cell)
+	MiniMap.update_ida_position(global_position)
+
+func _reveal_cells_around(center_cell: Vector2i) -> void:
+	var radius := int(ceil(lamp.texture_scale * CELL_REVEAL_FACTOR))
+	var space_state := get_world_2d().direct_space_state
+	for dx in range(-radius, radius + 1):
+		for dy in range(-radius, radius + 1):
+			if Vector2(dx, dy).length() > radius:
+				continue
+			var cell := center_cell + Vector2i(dx, dy)
+			var cell_world_pos := (Vector2(cell) + Vector2(0.5, 0.5)) * 16.0
+			var query := PhysicsRayQueryParameters2D.create(global_position, cell_world_pos)
+			query.exclude = [get_rid()]
+			if space_state.intersect_ray(query).is_empty():
+				MiniMap.reveal_cell(cell)
 
 func toggle_lamp_mode() -> void:
 	match lamp_mode:

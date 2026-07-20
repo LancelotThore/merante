@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dminimap0001"]
+
+[ext_resource type="Script" path="res://autoloads/mini_map.gd" id="1_mm"]
+[ext_resource type="Script" path="res://autoloads/mini_map_panel.gd" id="2_mmpanel"]
+
+[node name="MiniMap" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_mm")
+
+[node name="Panel" type="Control" parent="."]
+script = ExtResource("2_mmpanel")
